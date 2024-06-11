@@ -5,8 +5,7 @@
 1. setup env file like .env.template
 
    ```text
-   PORT=3000
-   DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/1250181779...someLikeThis
+   MY_IMPORTANT_VARIABLE="Greetings from here"
    ```
 
 2. Run this:
