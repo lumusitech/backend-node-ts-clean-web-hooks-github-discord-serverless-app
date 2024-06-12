@@ -1,4 +1,4 @@
-# Serverless with TypeScript - Web Hooks with github and Discord - TS-Node-dev (favorite)
+# Serverless with TypeScript - Web Hooks with github and Discord - TS-Node-dev (favorite) - Netlify deploy
 
 ## After clone, you must do
 
@@ -6,6 +6,8 @@
 
    ```text
    MY_IMPORTANT_VARIABLE="Greetings from here"
+   DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/1250...some..like..this
+
    ```
 
 2. Run this:
