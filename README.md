@@ -39,3 +39,9 @@
    "start": "npm run build && node dist/app.js",
    "netlify:dev": "netlify dev"
    ```
+
+NOTE 1: You must install netlify cli and login. More info [here](https://docs.netlify.com/functions/get-started/?fn-language=ts)
+
+NOTE 2: Set environment variables to netlify site config.
+
+NOTE 3: To deploy run `netlify deploy --prod`
