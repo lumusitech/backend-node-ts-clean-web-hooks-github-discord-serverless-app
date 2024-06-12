@@ -24,9 +24,56 @@ const notify = async (message: string) => {
   return true
 }
 
+const onStar = (payload: any): string => {
+  const { action, sender, repository } = payload
+
+  return `User ${sender.login} ${action} star on ${repository.full_name}`
+}
+
+const onIssue = (payload: any): string => {
+  const { action, issue } = payload
+
+  if (action === "opened") {
+    return `An issue was opened with this title ${issue.title}`
+
+  }
+  if (action === "closed") {
+    return `An issue was closed by ${issue.user.login}`
+
+  }
+  if (action === "reopened") {
+    return `An issue was reopened by ${issue.user.login}`
+
+  }
+
+  return `Unhandled action for the issue event ${action}`
+}
+
 const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
 
-  await notify('Hello, World from netlify dev!');
+  const githubEvent = event.headers['x-github-event'] ?? 'unknown';
+  // const signature = event.headers['x-hub-signature-256'] ?? 'unknown';
+  let message: string
+  const payload = JSON.parse(event.body ?? '{}');
+
+  console.log({ payload });
+
+  switch (githubEvent) {
+    case "star":
+      message = onStar(payload);
+      break
+
+    case "issues":
+      message = onIssue(payload);
+      break
+
+    default:
+      message = `unknown event: ${githubEvent}`;
+
+  }
+
+
+  await notify(message);
 
   return {
     statusCode: 200,
